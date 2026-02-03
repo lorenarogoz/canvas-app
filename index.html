@@ -8,12 +8,9 @@
 </head>
 <body>
 
-  
-  <header class="app-header" role="banner" aria-label="Window state">
-    <section id="windowState" aria-live="polite" aria-atomic="true"></section>
+  <header class="app-header" role="banner" aria-label="Header">
   </header>
 
-  
   <main class="app-main" role="main">
     <canvas id="canvas" aria-label="Interactive canvas"></canvas>
   </main>
@@ -23,10 +20,9 @@
     <form id="shapeForm" class="controls" aria-label="Add shapes on canvas">
       <button type="submit" name="shape" value="circle">Add circle</button>
       <button type="submit" name="shape" value="square">Add square</button>
-      <button type="submit" name="shape" value="triangle">Add triangle</button>
     </form>
   </footer>
 
-  <script src="app.js"></script>
+  <script type="module" src="./dist/main.js"></script>
 </body>
 </html>
