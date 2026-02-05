@@ -13,5 +13,15 @@ export class Circle extends Shape {
         ctx.arc(this.cx, this.cy, r, 0, Math.PI * 2);
         ctx.fill();
     }
+    contains(x, y) {
+        const dx = x - this.cx;
+        const dy = y - this.cy;
+        const r = this.size / 2;
+        return dx * dx + dy * dy <= r * r;
+    }
+    setPosition(x, y) {
+        this.cx = x;
+        this.cy = y;
+    }
 }
 //# sourceMappingURL=Circle.js.map
