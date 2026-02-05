@@ -2,16 +2,22 @@ import {syncCanvasSizeFromCSS} from './sync.js';
 import {render} from './render.js';
 import {shapes, addRandomSquare, addRandomCircle} from './state.js';
 import type {IShape} from './types.js';
+import {renderWindowState, scheduleWindowStateUpdate} from './windowState.js';
 
 document.addEventListener('DOMContentLoaded', () => {
     const canvas = document.getElementById('canvas') as HTMLCanvasElement;
     const ctx = canvas.getContext('2d')!;
     const form = document.getElementById('shapeForm') as HTMLFormElement;
+    const statePanel = document.getElementById(
+        'window-state-panel',
+    ) as HTMLElement;
 
     syncCanvasSizeFromCSS(canvas);
 
     const rerender = () => render(ctx, canvas, shapes);
     rerender();
+
+    renderWindowState(statePanel);
 
     let dragging = false;
     let selected: IShape | null = null;
@@ -123,7 +129,18 @@ document.addEventListener('DOMContentLoaded', () => {
     window.addEventListener('resize', () => {
         syncCanvasSizeFromCSS(canvas);
         rerender();
+        scheduleWindowStateUpdate(statePanel);
     });
+
+    window.addEventListener(
+        'scroll',
+        () => scheduleWindowStateUpdate(statePanel),
+        {passive: true},
+    );
+
+    document.addEventListener('visibilitychange', () =>
+        scheduleWindowStateUpdate(statePanel),
+    );
 
     form.addEventListener('submit', (ev: SubmitEvent) => {
         ev.preventDefault();

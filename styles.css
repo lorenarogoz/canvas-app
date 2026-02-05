@@ -1,9 +1,12 @@
 :root {
     --bg: #dfe5f3;
-    --text: #e5e7eb;
+    --text: #3866d0;
     --panel: #dfe5f3;
-    --hud-bg: rgba(2, 6, 23, 0.75);
+    --hud-bg: rgba(190, 194, 211, 0.75);
     --accent: #60a5fa;
+
+    --aside-width: 320px;
+    --gap: 16px;
 }
 
 * {
@@ -13,11 +16,12 @@ html,
 body {
     height: 100%;
 }
+
 body {
     margin: 0;
-    height: 100vh;
+    min-height: 100dvh;
     display: grid;
-    grid-template-rows: 1fr auto;
+    grid-template-rows: auto 1fr auto;
     background: var(--bg);
     color: var(--text);
     font-family:
@@ -31,19 +35,55 @@ body {
 }
 
 .app-header {
-    position: fixed;
-    top: 8px;
-    right: 8px;
+    position: sticky;
+    top: 0;
     z-index: 10;
 }
 
 .app-main {
     min-height: 0;
+    display: grid;
+    grid-template-columns: 1fr minmax(280px, var(--aside-width));
+    grid-template-areas:
+        'canvas state'
+        'form   state';
+    gap: var(--gap);
+    padding: var(--gap);
 }
+
+.canvas-and-state {
+    grid-area: canvas;
+    min-height: 0;
+    display: contents;
+}
+
+.canvas-side {
+    grid-area: canvas;
+    min-width: 0;
+    min-height: 0;
+    display: grid;
+}
+
+.state-side {
+    grid-area: state;
+    min-height: 0;
+    position: sticky;
+    top: calc(var(--gap) + 0px);
+    align-self: start;
+}
+
+.form {
+    grid-area: form;
+    min-width: 0;
+}
+
 #canvas {
     width: 100%;
-    height: 100%;
+    height: clamp(280px, 50dvh, 70dvh);
     display: block;
+    background: #fff;
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
 }
 
 .app-footer {
@@ -51,20 +91,13 @@ body {
     border-top: 1px solid #1f2937;
     padding: 10px;
 }
+
 .controls {
     display: grid;
-    gap: 0.75rem;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    align-items: end;
-}
-
-.controls fieldset {
-    grid-column: span 2;
-    display: grid;
-    gap: 0.5rem;
-    border: 1px solid #e5e7eb;
-    border-radius: 8px;
-    padding: 0.75rem;
+    column-gap: 0.5rem;
+    row-gap: 0.5rem;
+    grid-template-columns: max-content max-content;
+    align-items: center;
 }
 
 .controls label {
@@ -72,9 +105,14 @@ body {
     color: #374151;
 }
 
-.controls input[type='number'] {
-    width: 100%;
-    padding: 0.4rem 0.5rem;
+#shapeSize {
+    width: 7ch;
+}
+
+#shapeColor {
+    width: 7ch;
+    padding: 0;
+    border: none;
 }
 
 .controls .buttons {
@@ -89,7 +127,48 @@ body {
     background: #f9fafb;
     cursor: pointer;
 }
-
 .controls button:hover {
     background: #f3f4f6;
+}
+
+#window-state-panel {
+    font-family: ui-monospace, Menlo, Consolas, monospace;
+    font-size: 12px;
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 6px 12px;
+    padding: 8px;
+    background: #b6c1cd;
+    border: 1px dashed #758ebb;
+    border-radius: 6px;
+    color: #0b0b0b;
+}
+
+@media (max-width: 900px) {
+    .app-main {
+        grid-template-columns: 1fr;
+        grid-template-areas:
+            'canvas'
+            'state'
+            'form';
+    }
+    .state-side {
+        position: static;
+    }
+    #canvas {
+        height: clamp(240px, 45dvh, 60dvh);
+    }
+}
+
+.visually-hidden {
+    position: absolute !important;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    clip-path: inset(50%);
+    white-space: nowrap;
+    border: 0;
 }

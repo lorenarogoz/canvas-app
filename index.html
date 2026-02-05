@@ -10,18 +10,33 @@
         <header class="app-header" role="banner" aria-label="Header"></header>
 
         <main class="app-main" role="main">
-            <canvas id="canvas" aria-label="Interactive canvas"></canvas>
-        </main>
+            <section class="canvas-and-state">
+                <div class="canvas-side">
+                    <h2 class="visually-hidden">Canvas</h2>
+                    <canvas
+                        id="canvas"
+                        aria-label="Interactive canvas"
+                    ></canvas>
+                </div>
 
-        <footer class="app-footer" role="contentinfo">
-            <form
-                id="shapeForm"
-                class="controls"
-                aria-label="Add shapes on canvas"
-            >
-                <fieldset>
-                    <legend>Options</legend>
+                <aside class="state-side" aria-labelledby="state-panel-title">
+                    <h2 id="state-panel-title">Window State</h2>
+                    <div
+                        id="window-state-panel"
+                        class="state-panel"
+                        role="status"
+                        aria-live="polite"
+                    ></div>
+                </aside>
+            </section>
 
+            <section class="form">
+                <h2 class="visually-hidden">Options</h2>
+                <form
+                    id="shapeForm"
+                    class="controls"
+                    aria-label="Add shapes on canvas"
+                >
                     <label for="shapeSize">Size</label>
                     <input
                         id="shapeSize"
@@ -42,17 +57,19 @@
                         value="#60a5fa"
                         aria-label="Shape color"
                     />
-                </fieldset>
-                <div class="buttons">
-                    <button type="submit" name="shape" value="circle">
-                        Add circle
-                    </button>
-                    <button type="submit" name="shape" value="square">
-                        Add square
-                    </button>
-                </div>
-            </form>
-        </footer>
+                    <div class="buttons">
+                        <button type="submit" name="shape" value="circle">
+                            Add circle
+                        </button>
+                        <button type="submit" name="shape" value="square">
+                            Add square
+                        </button>
+                    </div>
+                </form>
+            </section>
+        </main>
+
+        <footer class="app-footer" role="contentinfo"></footer>
 
         <script type="module" src="./dist/main.js"></script>
     </body>
