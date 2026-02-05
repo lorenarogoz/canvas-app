@@ -1,28 +1,33 @@
 <!doctype html>
 <html lang="en">
-<head>
-  <meta charset="utf-8" />
-  <title>Canvas</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <link rel="stylesheet" href="styles.css" />
-</head>
-<body>
+    <head>
+        <meta charset="utf-8" />
+        <title>Canvas</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <link rel="stylesheet" href="styles.css" />
+    </head>
+    <body>
+        <header class="app-header" role="banner" aria-label="Header"></header>
 
-  <header class="app-header" role="banner" aria-label="Header">
-  </header>
+        <main class="app-main" role="main">
+            <canvas id="canvas" aria-label="Interactive canvas"></canvas>
+        </main>
 
-  <main class="app-main" role="main">
-    <canvas id="canvas" aria-label="Interactive canvas"></canvas>
-  </main>
+        <footer class="app-footer" role="contentinfo">
+            <form
+                id="shapeForm"
+                class="controls"
+                aria-label="Add shapes on canvas"
+            >
+                <button type="submit" name="shape" value="circle">
+                    Add circle
+                </button>
+                <button type="submit" name="shape" value="square">
+                    Add square
+                </button>
+            </form>
+        </footer>
 
-  
-  <footer class="app-footer" role="contentinfo">
-    <form id="shapeForm" class="controls" aria-label="Add shapes on canvas">
-      <button type="submit" name="shape" value="circle">Add circle</button>
-      <button type="submit" name="shape" value="square">Add square</button>
-    </form>
-  </footer>
-
-  <script type="module" src="./dist/main.js"></script>
-</body>
+        <script type="module" src="./dist/main.js"></script>
+    </body>
 </html>
