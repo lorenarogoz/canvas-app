@@ -19,12 +19,38 @@
                 class="controls"
                 aria-label="Add shapes on canvas"
             >
-                <button type="submit" name="shape" value="circle">
-                    Add circle
-                </button>
-                <button type="submit" name="shape" value="square">
-                    Add square
-                </button>
+                <fieldset>
+                    <legend>Options</legend>
+
+                    <label for="shapeSize">Size</label>
+                    <input
+                        id="shapeSize"
+                        name="size"
+                        type="number"
+                        min="10"
+                        max="300"
+                        step="1"
+                        value="80"
+                        aria-label="Shape size in pixels"
+                    />
+
+                    <label for="shapeColor">Color</label>
+                    <input
+                        id="shapeColor"
+                        name="color"
+                        type="color"
+                        value="#60a5fa"
+                        aria-label="Shape color"
+                    />
+                </fieldset>
+                <div class="buttons">
+                    <button type="submit" name="shape" value="circle">
+                        Add circle
+                    </button>
+                    <button type="submit" name="shape" value="square">
+                        Add square
+                    </button>
+                </div>
             </form>
         </footer>
 

@@ -115,11 +115,19 @@ document.addEventListener('DOMContentLoaded', () => {
         ev.preventDefault();
         const btn = ev.submitter;
         const shape = btn?.value;
+        const sizeInput = form.querySelector('#shapeSize');
+        const colorInput = form.querySelector('#shapeColor');
+        let size = Number(sizeInput?.value ?? 80);
+        if (!Number.isFinite(size) || size <= 0)
+            size = 80;
+        size = Math.max(10, Math.min(300, size));
+        const defaultColor = shape === 'circle' ? '#f97316' : '#60a5fa';
+        const color = colorInput?.value || defaultColor;
         if (shape === 'square') {
-            addRandomSquare(canvas, { size: 80, color: '#60a5fa' });
+            addRandomSquare(canvas, { size, color });
         }
         else if (shape === 'circle') {
-            addRandomCircle(canvas, { size: 80, color: '#f97316' });
+            addRandomCircle(canvas, { size, color });
         }
         else {
             return;
