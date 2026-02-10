@@ -1,4 +1,4 @@
-import {IShape} from './shapes/types.js';
+import type {IShape} from '../shapes/types.js';
 
 export function render(
     ctx: CanvasRenderingContext2D,
@@ -6,7 +6,6 @@ export function render(
     shapes: IShape[],
 ): void {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
-
     for (const s of shapes) {
         s.draw(ctx);
     }

@@ -7,7 +7,14 @@ export class Square extends Shape {
         public size: number,
         color: string,
     ) {
-        super(color);
+        super(color, 'square');
+    }
+
+    getSize() {
+        return this.size;
+    }
+    getPosition() {
+        return {x: this.x, y: this.y};
     }
 
     draw(ctx: CanvasRenderingContext2D): void {
@@ -24,8 +31,8 @@ export class Square extends Shape {
         );
     }
 
-    setPosition(px: number, py: number): void {
-        this.x = px;
-        this.y = py;
+    setPosition(x: number, y: number) {
+        this.x = x;
+        this.y = y;
     }
 }
