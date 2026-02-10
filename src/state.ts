@@ -1,6 +1,6 @@
-import type {IShape} from './types.js';
-import {Square} from './Square.js';
-import {Circle} from './Circle.js';
+import type {IShape} from './shapes/types.js';
+import {Square} from './shapes/Square.js';
+import {Circle} from './shapes/Circle.js';
 
 export const shapes: IShape[] = [];
 

@@ -1,5 +1,5 @@
-import { Square } from './Square.js';
-import { Circle } from './Circle.js';
+import { Square } from './shapes/Square.js';
+import { Circle } from './shapes/Circle.js';
 export const shapes = [];
 export function addRandomSquare(canvas, options) {
     const size = options?.size ?? 80;

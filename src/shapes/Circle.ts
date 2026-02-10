@@ -1,33 +1,39 @@
-import { Shape } from './shapes/Shape.js';
+import {Shape} from './Shape.js';
+
 export class Circle extends Shape {
-    constructor(cx, cy, size, color) {
+    constructor(
+        public cx: number,
+        public cy: number,
+        public size: number,
+        color: string,
+    ) {
         super(color, 'circle');
-        this.cx = cx;
-        this.cy = cy;
-        this.size = size;
     }
+
     getSize() {
         return this.size;
     }
     getPosition() {
-        return { x: this.cx, y: this.cy };
+        return {x: this.cx, y: this.cy};
     }
-    draw(ctx) {
+
+    draw(ctx: CanvasRenderingContext2D): void {
         const r = this.size / 2;
         ctx.fillStyle = this.color;
         ctx.beginPath();
         ctx.arc(this.cx, this.cy, r, 0, Math.PI * 2);
         ctx.fill();
     }
-    contains(x, y) {
+
+    contains(x: number, y: number): boolean {
         const dx = x - this.cx;
         const dy = y - this.cy;
         const r = this.size / 2;
         return dx * dx + dy * dy <= r * r;
     }
-    setPosition(x, y) {
+
+    setPosition(x: number, y: number) {
         this.cx = x;
         this.cy = y;
     }
 }
-//# sourceMappingURL=Circle.js.map
